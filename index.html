@@ -1,165 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Milky's Snake Game</title>
-    <style>
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background-color: black;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            width: 90%;
-            max-width: 400px;
-            margin: 20px auto;
-            gap: 2px;
-        }
-
-        .grid-container div {
-            background: rgb(20, 20, 20);
-            border: 1px solid #222;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        #main {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-
-        button {
-            background-color: blue;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: darkblue;
-        }
-
-        #option {
-            margin: 20px auto;
-            text-align: left;
-            max-width: 400px;
-        }
-
-        label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        label input {
-            margin-right: 10px;
-        }
-
-        #joystick-container {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 150px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            touch-action: none;
-        }
-
-        #joystick {
-            width: 50px;
-            height: 50px;
-            background: blue;
-            border-radius: 50%;
-            position: relative;
-            touch-action: none;
-        }
-    </style>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
 </head>
 <body>
-    <h1 id="main">Welcome to Snake (Milky's version)</h1>
+	<p id="score"></p>
+	<h1 id="main">Welcome to Snake (Milky's version)</h1>
+	<div class="main"><h1 id= "options">Select your difficulity level:</h1>
+		<div id="option">
+		<p id="easy">Easy</p><input type="radio" name ="difficulity" value="easy">
+		<p id="middium"> Middium</p><input type="radio" name ="difficulity" value="middium">
+		<p id="hard"> Hard</p><input type="radio" name ="difficulity" value="hard">
+		<p id="impossible">Intense</p><input type="radio" name ="difficulity" value="impossible">
+		<p id="impossibleLitrally">Hell</p><input type="radio" name ="difficulity" value="impossibleLitrally">
+		<p id="litrally">Unplayable</p><input type="radio" name ="difficulity" value="can">
 
-    <div id="option">
-        <h2>Select your difficulty level:</h2>
-        <label>
-            <input type="radio" name="difficulty" value="easy"> Easy
-        </label>
-        <label>
-            <input type="radio" name="difficulty" value="medium"> Medium
-        </label>
-        <label>
-            <input type="radio" name="difficulty" value="hard"> Hard
-        </label>
-        <label>
-            <input type="radio" name="difficulty" value="impossible"> Intense
-        </label>
-        <label>
-            <input type="radio" name="difficulty" value="impossibleLiterally"> Hell
-        </label>
-        <label>
-            <input type="radio" name="difficulty" value="can"> Unplayable
-        </label>
-    </div>
-
-    <button id="start" onclick="start()">Click to Start</button>
-
-    <p id="score">Score: 0</p>
-
-    <div class="grid-container"></div>
-
-    <div id="joystick-container">
-        <div id="joystick"></div>
-    </div>
-
-    <script src="index.js"></script>
-    <script>
-        // Joystick logic for touch input
-        const joystickContainer = document.getElementById('joystick-container');
-        const joystick = document.getElementById('joystick');
-        let joystickActive = false;
-        let joystickStartX, joystickStartY;
-
-        joystick.addEventListener('touchstart', (e) => {
-            joystickActive = true;
-            joystickStartX = e.touches[0].clientX;
-            joystickStartY = e.touches[0].clientY;
-        });
-
-        joystick.addEventListener('touchmove', (e) => {
-            if (!joystickActive) return;
-
-            const deltaX = e.touches[0].clientX - joystickStartX;
-            const deltaY = e.touches[0].clientY - joystickStartY;
-
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                movement = deltaX > 0 ? 'right' : 'left';
-            } else {
-                movement = deltaY > 0 ? 'down' : 'up';
-            }
-        });
-
-        joystick.addEventListener('touchend', () => {
-            joystickActive = false;
-        });
-    </script>
+		</div>
+	</div>
+	<button id = "start" onclick="start()">Click to Start</button>
+	
+	<div class="grid-container">
+	</div>
+	<script type="text/javascript" src="index.js"></script>
 </body>
 </html>
